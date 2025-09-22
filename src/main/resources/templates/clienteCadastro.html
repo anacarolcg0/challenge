@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Cliente</title>
+    <link th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" rel="stylesheet"/>
+    <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}" defer></script>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<div th:insert="~{fragments/header :: cabecalho}"></div>
+
+<div class="main_content container mt-4">
+    <form method="post" th:action="@{/clientes/cadastrar}" th:object="${cliente}" class="card p-4 shadow-sm">
+        <h2 class="mb-3">Cadastro de Cliente</h2>
+        <input type="hidden" th:field="*{idCliente}">
+
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome:</label>
+            <input type="text" id="nome" th:field="*{nome}" class="form-control"/>
+            <p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="text-danger"></p>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" id="email" th:field="*{email}" class="form-control"/>
+            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></p>
+        </div>
+
+        <div class="mb-3">
+            <label for="cpf" class="form-label">CPF:</label>
+            <input type="text" id="cpf" th:field="*{cpf}" class="form-control"/>
+            <p th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}" class="text-danger"></p>
+        </div>
+
+        <div class="mb-3">
+            <label for="telefone" class="form-label">Telefone:</label>
+            <input type="text" id="telefone" th:field="*{telefone}" class="form-control"/>
+            <p th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}" class="text-danger"></p>
+        </div>
+
+        <div class="mb-3">
+            <label for="dataNascimento" class="form-label">Data de Nascimento:</label>
+            <input type="date" id="dataNascimento" th:field="*{dataNascimento}" class="form-control"/>
+            <p th:if="${#fields.hasErrors('dataNascimento')}" th:errors="*{dataNascimento}" class="text-danger"></p>
+        </div>
+
+        <div class="mb-3">
+            <label for="moto" class="form-label">Moto:</label>
+            <select id="moto" th:field="*{moto}" class="form-select">
+                <option value="" disabled selected>Selecione a moto...</option>
+                <option th:each="m : ${motoLista}" th:value="${m}" th:text="${m.modelo + ' - ' + m.placa}"></option>
+            </select>
+            <p th:if="${#fields.hasErrors('moto')}" th:errors="*{moto}" class="text-danger"></p>
+        </div>
+
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+    </form>
+</div>
+
+<div th:insert="~{fragments/footer :: rodape}"></div>
+</body>
+</html>
