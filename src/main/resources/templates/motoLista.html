@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Motos</title>
+    <link th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" rel="stylesheet"/>
+    <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}" defer></script>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <script th:src="@{/js/script.js}" defer></script>
+</head>
+<body>
+<div th:insert="~{fragments/header :: cabecalho}"></div>
+
+<div class="main_content container mt-4">
+    <h2 class="mb-3">Lista de Motos</h2>
+
+    <table class="table table-striped">
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Modelo</th>
+            <th>Placa</th>
+            <th>Status</th>
+            <th>Setor</th>
+            <th>Pátio</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="moto : ${listaMotos}">
+            <td th:text="${moto.idMoto}"></td>
+            <td th:text="${moto.modelo}"></td>
+            <td th:text="${moto.placa}"></td>
+            <td th:text="${moto.status}"></td>
+            <td th:text="${moto.setor}"></td>
+            <td th:text="${moto.patio != null ? moto.patio.nome : 'Não definido'}"></td>
+            <td>
+                <button class="btn btn-primary btn-sm"
+                        th:attr="onclick=|showModal('infoModalMoto' + ${moto.idMoto})|">
+                    Ver
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Modais -->
+    <div th:each="moto : ${listaMotos}"
+         th:attr="id=${'infoModalMoto' + moto.idMoto}"
+         style="display: none"
+         class="card p-3 shadow-sm mt-3">
+        <h5>Detalhes da Moto</h5>
+        <p>
+            <b>ID:</b> <span th:text="${moto.idMoto}"></span><br/>
+            <b>Modelo:</b> <span th:text="${moto.modelo}"></span><br/>
+            <b>Placa:</b> <span th:text="${moto.placa}"></span><br/>
+            <b>Status:</b> <span th:text="${moto.status}"></span><br/>
+            <b>Setor:</b> <span th:text="${moto.setor}"></span><br/>
+            <b>Pátio:</b>
+            <span th:text="${moto.patio != null ? moto.patio.nome : 'Não definido'}"></span><br/>
+            <b>Cliente:</b>
+            <span th:text="${moto.cliente != null ? moto.cliente.nome : 'Sem cliente vinculado'}"></span><br/>
+
+            <a th:href="@{/motos/cadastro/{id}(id=${moto.idMoto})}" class="btn btn-warning btn-sm mt-2">Editar</a>
+            <a th:href="@{/motos/deletar/{id}(id=${moto.idMoto})}" class="btn btn-danger btn-sm mt-2">Deletar</a>
+        </p>
+        <button class="btn btn-secondary btn-sm"
+                th:attr="onclick=|hideModal('infoModalMoto' + ${moto.idMoto})|">
+            Fechar
+        </button>
+    </div>
+</div>
+
+<div th:insert="~{fragments/footer :: rodape}"></div>
+</body>
+</html>
