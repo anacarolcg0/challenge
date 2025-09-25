@@ -47,9 +47,9 @@
 
         <div class="mb-3">
             <label for="moto" class="form-label">Moto:</label>
-            <select id="moto" th:field="*{moto}" class="form-select">
+            <select id="moto" name="motoId" class="form-select">
                 <option value="" disabled selected>Selecione a moto...</option>
-                <option th:each="m : ${motoLista}" th:value="${m}" th:text="${m.modelo + ' - ' + m.placa}"></option>
+                <option th:each="m : ${motoLista}" th:value="${m.idMoto}" th:text="${m.modelo + ' - ' + m.placa}"></option>
             </select>
             <p th:if="${#fields.hasErrors('moto')}" th:errors="*{moto}" class="text-danger"></p>
         </div>

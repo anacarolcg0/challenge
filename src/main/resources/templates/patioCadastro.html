@@ -29,9 +29,9 @@
 
         <div class="mb-3">
             <label for="funcionario" class="form-label">Funcionário Responsável:</label>
-            <select id="funcionario" th:field="*{funcionario}" class="form-select">
+            <select id="funcionario" name="funcionarioId" class="form-select">
                 <option value="" disabled selected>Selecione o funcionário...</option>
-                <option th:each="f : ${funcionarioLista}" th:value="${f}" th:text="${f.nomeUsuario}"></option>
+                <option th:each="f : ${funcionarioLista}" th:value="${f.idFuncionario}" th:text="${f.nomeUsuario}"></option>
             </select>
             <p th:if="${#fields.hasErrors('funcionario')}" th:errors="*{funcionario}" class="text-danger"></p>
         </div>

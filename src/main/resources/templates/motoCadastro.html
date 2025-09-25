@@ -51,9 +51,9 @@
 
         <div class="mb-3">
             <label for="patio" class="form-label">Pátio:</label>
-            <select id="patio" th:field="*{patio}" class="form-select">
+            <select id="patio" name="patioId" class="form-select">
                 <option value="" disabled selected>Selecione o pátio...</option>
-                <option th:each="p : ${patioLista}" th:value="${p}" th:text="${p.nome}"></option>
+                <option th:each="p : ${patioLista}" th:value="${p.idPatio}" th:text="${p.localizacao}"></option>
             </select>
             <p th:if="${#fields.hasErrors('patio')}" th:errors="*{patio}" class="text-danger"></p>
         </div>
