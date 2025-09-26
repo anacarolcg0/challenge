@@ -20,8 +20,6 @@
             <th>ID</th>
             <th>Localização</th>
             <th>Vagas</th>
-            <th>Funcionário</th>
-            <th>Motos</th>
             <th>Ações</th>
         </tr>
         </thead>
@@ -30,18 +28,6 @@
             <td th:text="${patio.idPatio}"></td>
             <td th:text="${patio.localizacao}"></td>
             <td th:text="${patio.quantidadeVagas}"></td>
-            <td th:text="${patio.funcionario != null ? patio.funcionario.nomeUsuario : 'Não definido'}"></td>
-
-            <!-- Aqui mostramos diretamente os modelos e placas das motos -->
-            <td>
-                <span th:if="${patio.motos != null and !patio.motos.isEmpty()}">
-                    <ul class="mb-0">
-                        <li th:each="m : ${patio.motos}" th:text="${m.modelo + ' - ' + m.placa}"></li>
-                    </ul>
-                </span>
-                <span th:if="${patio.motos == null or patio.motos.isEmpty()}">Nenhuma vinculada</span>
-            </td>
-
             <td>
                 <button class="btn btn-primary btn-sm"
                         th:attr="onclick=|showModal('infoModalPatio' + ${patio.idPatio})|">

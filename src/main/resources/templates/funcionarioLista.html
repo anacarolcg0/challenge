@@ -20,7 +20,6 @@
             <th>ID</th>
             <th>Nome de Usuário</th>
             <th>Email</th>
-            <th>Pátio</th>
             <th>Ações</th>
         </tr>
         </thead>
@@ -29,14 +28,6 @@
             <td th:text="${funcionario.idFuncionario}"></td>
             <td th:text="${funcionario.nomeUsuario}"></td>
             <td th:text="${funcionario.email}"></td>
-            <td>
-                <span th:if="${funcionario.patios != null and !funcionario.patios.isEmpty()}">
-                    <ul class="mb-0">
-                        <li th:each="p : ${funcionario.patios}" th:text="${p.localizacao}"></li>
-                    </ul>
-                </span>
-                <span th:if="${funcionario.patios == null or funcionario.patios.isEmpty()}">Nenhum pátio vinculado</span>
-            </td>
             <td>
                 <button class="btn btn-primary btn-sm"
                         th:attr="onclick=|showModal('infoModalFuncionario' + ${funcionario.idFuncionario})|">
@@ -56,13 +47,7 @@
             <b>ID:</b> <span th:text="${funcionario.idFuncionario}"></span><br/>
             <b>Nome de Usuário:</b> <span th:text="${funcionario.nomeUsuario}"></span><br/>
             <b>Email:</b> <span th:text="${funcionario.email}"></span><br/>
-            <b>Pátios Responsáveis:</b>
-            <span th:if="${funcionario.patios != null and !funcionario.patios.isEmpty()}">
-                <ul>
-                    <li th:each="p : ${funcionario.patios}" th:text="${p.localizacao}"></li>
-                </ul>
-            </span>
-            <span th:if="${funcionario.patios == null or funcionario.patios.isEmpty()}">Nenhum pátio vinculado</span>
+            <b>Pátios Responsáveis:</b> <span th:text="${funcionario.patios != null ? funcionario.patios.size() : 0}"></span>
         </p>
         <a th:href="@{/funcionarios/cadastro/{id}(id=${funcionario.idFuncionario})}" class="btn btn-warning btn-sm">Editar</a>
         <a th:href="@{/funcionarios/deletar/{id}(id=${funcionario.idFuncionario})}" class="btn btn-danger btn-sm">Deletar</a>
