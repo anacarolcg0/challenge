@@ -20,6 +20,7 @@
             <th>ID</th>
             <th>Nome de Usuário</th>
             <th>Email</th>
+            <th>Pátio</th>
             <th>Ações</th>
         </tr>
         </thead>
@@ -28,6 +29,14 @@
             <td th:text="${funcionario.idFuncionario}"></td>
             <td th:text="${funcionario.nomeUsuario}"></td>
             <td th:text="${funcionario.email}"></td>
+            <td>
+                <span th:if="${funcionario.patios != null and !funcionario.patios.isEmpty()}">
+                    <ul>
+                        <li th:each="p : ${funcionario.patios}" th:text="${p.localizacao}"></li>
+                    </ul>
+                </span>
+                <span th:if="${funcionario.patios == null or funcionario.patios.isEmpty()}">Nenhum pátio atribuído</span>
+            </td>
             <td>
                 <button class="btn btn-primary btn-sm"
                         th:attr="onclick=|showModal('infoModalFuncionario' + ${funcionario.idFuncionario})|">

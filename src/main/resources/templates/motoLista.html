@@ -23,6 +23,7 @@
             <th>Status</th>
             <th>Setor</th>
             <th>Pátio</th>
+            <th>Cliente</th>
             <th>Ações</th>
         </tr>
         </thead>
@@ -34,6 +35,7 @@
             <td th:text="${moto.status}"></td>
             <td th:text="${moto.setor}"></td>
             <td th:text="${moto.patio != null ? moto.patio.nome : 'Não definido'}"></td>
+            <td th:text="${moto.cliente != null ? moto.cliente.nome : 'Sem cliente vinculado'}"></td>
             <td>
                 <button class="btn btn-primary btn-sm"
                         th:attr="onclick=|showModal('infoModalMoto' + ${moto.idMoto})|">

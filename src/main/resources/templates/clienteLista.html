@@ -20,6 +20,10 @@
             <th>ID</th>
             <th>Nome</th>
             <th>Email</th>
+            <th>CPF</th>
+            <th>Telefone</th>
+            <th>Data de nascimento</th>
+            <th>Moto</th>
             <th>Ações</th>
         </tr>
         </thead>
@@ -28,6 +32,10 @@
             <td th:text="${cliente.idCliente}"></td>
             <td th:text="${cliente.nome}"></td>
             <td th:text="${cliente.email}"></td>
+            <td th:text="${cliente.cpf}"></td>
+            <td th:text="${cliente.telefone}"></td>
+            <td th:text="${#temporals.format(cliente.dataNascimento, 'dd/MM/yyyy')}"></td>
+            <td th:text="${cliente.moto != null ? cliente.moto.modelo + ' - ' + cliente.moto.placa : 'Nenhuma vinculada'}"></td>
             <td>
                 <button class="btn btn-primary btn-sm"
                         th:attr="onclick=|showModal('infoModalCliente' + ${cliente.idCliente})|">
