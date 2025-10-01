@@ -12,9 +12,10 @@
     <h1 class="mb-3"><span th:text="#{app.name}"></span></h1>
     <nav class="navbar navbar-expand-lg">
         <div class="navbar-nav">
-            <!-- Clientes -->
-            <a class="nav-item nav-link" th:href="@{/clientes/lista}" th:text="#{menu.cliente.lista}"></a>
-            <a class="nav-item nav-link" th:href="@{/clientes/cadastro}" th:text="#{menu.cliente.cadastro}"></a>
+
+            <!-- Funcionários -->
+            <a class="nav-item nav-link" th:href="@{/funcionarios/lista}" th:text="#{menu.funcionario.lista}"></a>
+            <a class="nav-item nav-link" th:href="@{/funcionarios/cadastro}" th:text="#{menu.funcionario.cadastro}"></a>
 
             <!-- Pátios -->
             <a class="nav-item nav-link" th:href="@{/patios/lista}" th:text="#{menu.patio.lista}"></a>
@@ -24,9 +25,9 @@
             <a class="nav-item nav-link" th:href="@{/motos/lista}" th:text="#{menu.moto.lista}"></a>
             <a class="nav-item nav-link" th:href="@{/motos/cadastro}" th:text="#{menu.moto.cadastro}"></a>
 
-            <!-- Funcionários -->
-            <a class="nav-item nav-link" th:href="@{/funcionarios/lista}" th:text="#{menu.funcionario.lista}"></a>
-            <a class="nav-item nav-link" th:href="@{/funcionarios/cadastro}" th:text="#{menu.funcionario.cadastro}"></a>
+            <!-- Clientes -->
+            <a class="nav-item nav-link" th:href="@{/clientes/lista}" th:text="#{menu.cliente.lista}"></a>
+            <a class="nav-item nav-link" th:href="@{/clientes/cadastro}" th:text="#{menu.cliente.cadastro}"></a>
 
             <!-- Idiomas -->
             <a class="nav-item nav-link" href="?lang=pt_BR">BR</a>
