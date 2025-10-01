@@ -2,6 +2,7 @@ package br.com.fiap.challenge.controller;
 
 import br.com.fiap.challenge.entity.Moto;
 import br.com.fiap.challenge.entity.Patio;
+import br.com.fiap.challenge.service.ClienteService;
 import br.com.fiap.challenge.service.MotoService;
 import br.com.fiap.challenge.service.PatioService;
 import jakarta.validation.Valid;
@@ -23,6 +24,9 @@ public class MotoController {
     @Autowired
     private PatioService patioService;
 
+    @Autowired
+    private ClienteService clienteService;
+
     @GetMapping("/lista")
     public String listarMotos(Model model) {
         List<Moto> motos = motoService.readMotos();
@@ -34,24 +38,37 @@ public class MotoController {
     public String cadastroMoto(Model model) {
         model.addAttribute("moto", new Moto());
         model.addAttribute("patioLista", patioService.readPatios());
+        model.addAttribute("clienteLista", clienteService.readClientes());
         return "motoCadastro";
     }
 
     @PostMapping("/cadastrar")
     public String cadastrarMoto(@Valid Moto moto, BindingResult result,
                                 @RequestParam(required = false) Long patioId,
+                                @RequestParam(required = false) Long clienteId,
                                 Model model) {
+
         if (result.hasErrors()) {
             model.addAttribute("moto", moto);
             model.addAttribute("patioLista", patioService.readPatios());
+            model.addAttribute("clienteLista", clienteService.readClientes());
             return "motoCadastro";
         }
 
+        // Setar o pátio
         if (patioId != null) {
             Patio p = patioService.readPatio(patioId);
             moto.setPatio(p);
         }
 
+        // Setar o cliente e sincronizar relacionamento bidirecional
+        if (clienteId != null) {
+            var c = clienteService.readCliente(clienteId);
+            c.setMoto(moto);       // Atualiza o lado dono da relação (FK na tabela Cliente)
+            moto.setCliente(c);    // Mantém o lado da Moto consistente
+        }
+
+        // Criar ou atualizar a moto
         if (moto.getIdMoto() == null) {
             motoService.createMoto(moto);
         } else {
@@ -69,6 +86,7 @@ public class MotoController {
         }
         model.addAttribute("moto", moto);
         model.addAttribute("patioLista", patioService.readPatios());
+        model.addAttribute("clienteLista", clienteService.readClientes());
         return "motoCadastro";
     }
 

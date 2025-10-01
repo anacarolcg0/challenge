@@ -17,10 +17,13 @@ public class SecurityConfig {
                                 authorizeRequests
                                         .requestMatchers("/").permitAll()
                                         .requestMatchers("/clientes/lista").permitAll()
+                                        .requestMatchers("/funcionarios/lista").permitAll()
+                                        .requestMatchers("/motos/lista").permitAll()
+                                        .requestMatchers("/patios/lista").permitAll()
                                         .anyRequest().authenticated()
                 )
                 .oauth2Login(oauth2 ->
-                        oauth2.defaultSuccessUrl("/clientes/lista"))
+                        oauth2.defaultSuccessUrl("/clientes/lista", true))
                 .formLogin(Customizer.withDefaults())
                 .build();
     }

@@ -53,9 +53,18 @@
             <label for="patio" class="form-label">Pátio:</label>
             <select id="patio" name="patioId" class="form-select">
                 <option value="" disabled selected>Selecione o pátio...</option>
-                <option th:each="p : ${patios}" th:value="${p.id}" th:text="${p.localizacao}"></option>
+                <option th:each="p : ${patioLista}" th:value="${p.idPatio}" th:text="${p.localizacao}"></option>
             </select>
             <p th:if="${#fields.hasErrors('patio')}" th:errors="*{patio}" class="text-danger"></p>
+        </div>
+
+        <div class="mb-3">
+            <label for="cliente" class="form-label">Cliente:</label>
+            <select id="cliente" name="clienteId" class="form-select">
+                <option value="" disabled selected>Selecione o cliente...</option>
+                <option th:each="c : ${clienteLista}" th:value="${c.idCliente}" th:text="${c.nome}"></option>
+            </select>
+            <p th:if="${#fields.hasErrors('cliente')}" th:errors="*{cliente}" class="text-danger"></p>
         </div>
 
         <div class="mt-3">

@@ -34,7 +34,7 @@
             <td th:text="${moto.placa}"></td>
             <td th:text="${moto.status}"></td>
             <td th:text="${moto.setor}"></td>
-            <td th:text="${moto.patio != null ? moto.patio.nome : 'Não definido'}"></td>
+            <td th:text="${moto.patio != null ? moto.patio.localizacao : 'Não definido'}"></td>
             <td th:text="${moto.cliente != null ? moto.cliente.nome : 'Sem cliente vinculado'}"></td>
             <td>
                 <button class="btn btn-primary btn-sm"
@@ -57,7 +57,7 @@
             <b>Placa:</b> <span th:text="${moto.placa}"></span><br/>
             <b>Status:</b> <span th:text="${moto.status}"></span><br/>
             <b>Setor:</b> <span th:text="${moto.setor}"></span><br/>
-            <b>Pátio:</b> <span th:text="${moto.patio != null ? moto.patio.nome : 'Não definido'}"></span><br/>
+            <b>Pátio:</b> <span th:text="${moto.patio != null ? moto.patio.localizacao : 'Não definido'}"></span><br/>
             <b>Cliente:</b> <span th:text="${moto.cliente != null ? moto.cliente.nome : 'Sem cliente vinculado'}"></span>
         </p>
         <a th:href="@{/motos/cadastro/{id}(id=${moto.idMoto})}" class="btn btn-warning btn-sm">Editar</a>
