@@ -20,6 +20,8 @@
             <th>ID</th>
             <th>Localização</th>
             <th>Vagas</th>
+            <th>Funcionário</th>
+            <th>Moto</th>
             <th>Ações</th>
         </tr>
         </thead>
@@ -28,6 +30,8 @@
             <td th:text="${patio.idPatio}"></td>
             <td th:text="${patio.localizacao}"></td>
             <td th:text="${patio.quantidadeVagas}"></td>
+            <td th:text="${patio.funcionario != null ? patio.funcionario.nomeUsuario : 'Não definido'}"></td>
+            <td th:text="${#lists.size(patio.motos)} + ' motos'"></td>
             <td>
                 <button class="btn btn-primary btn-sm"
                         th:attr="onclick=|showModal('infoModalPatio' + ${patio.idPatio})|">
