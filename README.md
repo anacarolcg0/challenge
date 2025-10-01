@@ -21,3 +21,5 @@
 - Navegue até a pasta do projeto
 - Execute o comando: ./gradlew bootRun
 - Acesse a aplicação em: http://localhost:8080
+
+MAIS INFORMAÇÕES DA SEGURANÇA OAUTH ESTÃO NO ARQUIVO .TXT
