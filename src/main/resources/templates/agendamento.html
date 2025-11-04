@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Agendamento</title>
+    <link th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" rel="stylesheet"/>
+    <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}" defer></script>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<div th:insert="~{fragments/header :: cabecalho}"></div>
+
+<div class="main_content container mt-4">
+    <form method="post" th:action="@{/agendamentos/salvar}" th:object="${agendamento}" class="card p-4 shadow-sm">
+        <h2 class="mb-3">Cadastro de Agendamento</h2>
+        <input type="hidden" th:field="*{id}">
+
+        <div class="mb-3">
+            <label for="nomeCliente" class="form-label">Nome do Clinte:</label>
+            <input type="text" id="nomeCliente" th:field="*{nomeCliente}" class="form-control" required>
+            <p th:if="${#fields.hasErrors('nomeCliente')}" th:errors="*{nomeCliente}" class="text-danger"></p>
+        </div>
+
+        <div class="mb-3">
+            <label for="modeloDaMoto" class="form-label">Modelo da Moto:</label>
+            <input type="text" id="modeloDaMoto" th:field="*{modeloDaMoto}" class="form-control" required>
+            <p th:if="${#fields.hasErrors('modeloDaMoto')}" th:errors="*{modeloDaMoto}" class="text-danger"></p>
+        </div>
+
+        <div class="mb-3">
+            <label for="dataAgendamento" class="form-label">Data do Agendamento:</label>
+            <input type="datetime-local" id="dataAgendamento" th:field="*{dataAgendamento}" class="form-control" required>
+            <p th:if="${#fields.hasErrors('dataAgendamento')}" th:errors="*{dataAgendamento}" class="text-danger"></p>
+        </div>
+
+        <div class="mb-3">
+            <label for="descricaoServico" class="form-label">Descrição do Serviço:</label>
+            <textarea id="descricaoServico" th:field="*{descricaoServico}" class="form-control" rows="4" required></textarea>
+            <p th:if="${#fields.hasErrors('descricaoServico')}" th:errors="*{descricaoServico}" class="text-danger"></p>
+        </div>
+
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a th:href="@{/agendamentos/lista}" class="btn btn-secondary">Voltar</a>
+        </div>
+    </form>
+</div>
+
+<div th:insert="~{fragments/footer :: rodape}"></div>
+</body>
+</html>

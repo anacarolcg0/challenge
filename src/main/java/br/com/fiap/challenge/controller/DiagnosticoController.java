@@ -15,7 +15,7 @@ public class DiagnosticoController {
     private DiagnosticoRepository repository;
 
     @GetMapping("/novo")
-    public String novoDiagnosticoForm(Model model) {
+    public String novoDiagnostico(Model model) {
         model.addAttribute("diagnostico", new Diagnostico());
         return "diagnostico";
     }
