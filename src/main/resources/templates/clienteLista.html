@@ -48,7 +48,7 @@
 
     <!-- Modais de Cliente -->
     <div th:each="cliente : ${listaClientes}"
-         th:attr="id=${'infoModalCliente' + cliente.idCliente}"
+         th:id="'infoModalCliente' + ${cliente.idCliente}"
          style="display:none" class="card p-3 shadow-sm mt-3">
         <h5>Detalhes do Cliente</h5>
         <p>
@@ -60,9 +60,20 @@
             <b>Data de Nascimento:</b> <span th:text="${#temporals.format(cliente.dataNascimento, 'dd/MM/yyyy')}"></span><br/>
             <b>Moto:</b> <span th:text="${cliente.moto != null ? cliente.moto.modelo + ' - ' + cliente.moto.placa : 'Nenhuma vinculada'}"></span>
         </p>
+
         <a th:href="@{/clientes/cadastro/{id}(id=${cliente.idCliente})}" class="btn btn-warning btn-sm">Editar</a>
-        <a th:href="@{/clientes/deletar/{id}(id=${cliente.idCliente})}" class="btn btn-danger btn-sm">Deletar</a>
-        <button class="btn btn-secondary btn-sm mt-2" th:attr="onclick=|hideModal('infoModalCliente' + ${cliente.idCliente})|">Fechar</button>
+
+        <form th:action="@{/clientes/deletar/{id}(id=${cliente.idCliente})}"
+              method="post"
+              onsubmit="return confirm('Tem certeza que deseja excluir este cliente?')"
+              style="display:inline;">
+            <button type="submit" class="btn btn-danger btn-sm">Deletar</button>
+        </form>
+
+        <button class="btn btn-secondary btn-sm mt-2"
+                th:attr="onclick=|hideModal('infoModalCliente' + ${cliente.idCliente})|">
+            Fechar
+        </button>
     </div>
 </div>
 

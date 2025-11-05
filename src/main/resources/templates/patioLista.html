@@ -44,7 +44,7 @@
 
     <!-- Modais de Pátio -->
     <div th:each="patio : ${listaPatios}"
-         th:attr="id=${'infoModalPatio' + patio.idPatio}"
+         th:id="'infoModalPatio' + ${patio.idPatio}"
          style="display:none" class="card p-3 shadow-sm mt-3">
         <h5>Detalhes do Pátio</h5>
         <p>
@@ -54,15 +54,26 @@
             <b>Funcionário Responsável:</b> <span th:text="${patio.funcionario != null ? patio.funcionario.nomeUsuario : 'Não definido'}"></span><br/>
             <b>Motos:</b>
             <span th:if="${patio.motos != null and !patio.motos.isEmpty()}">
-                <ul>
-                    <li th:each="m : ${patio.motos}" th:text="${m.modelo + ' - ' + m.placa}"></li>
-                </ul>
-            </span>
+            <ul>
+                <li th:each="m : ${patio.motos}" th:text="${m.modelo + ' - ' + m.placa}"></li>
+            </ul>
+        </span>
             <span th:if="${patio.motos == null or patio.motos.isEmpty()}">Nenhuma vinculada</span>
         </p>
+
         <a th:href="@{/patios/cadastro/{id}(id=${patio.idPatio})}" class="btn btn-warning btn-sm">Editar</a>
-        <a th:href="@{/patios/deletar/{id}(id=${patio.idPatio})}" class="btn btn-danger btn-sm">Deletar</a>
-        <button class="btn btn-secondary btn-sm mt-2" th:attr="onclick=|hideModal('infoModalPatio' + ${patio.idPatio})|">Fechar</button>
+
+        <form th:action="@{/patios/deletar/{id}(id=${patio.idPatio})}"
+              method="post"
+              onsubmit="return confirm('Tem certeza que deseja excluir este pátio?')"
+              style="display:inline;">
+            <button type="submit" class="btn btn-danger btn-sm">Deletar</button>
+        </form>
+
+        <button class="btn btn-secondary btn-sm mt-2"
+                th:attr="onclick=|hideModal('infoModalPatio' + ${patio.idPatio})|">
+            Fechar
+        </button>
     </div>
 </div>
 

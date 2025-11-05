@@ -72,7 +72,7 @@ public class PatioController {
         return "patioCadastro";
     }
 
-    @GetMapping("/deletar/{id}")
+    @PostMapping("/deletar/{id}")
     public String deletarPatio(@PathVariable Long id) {
         patioService.deletePatio(id);
         return "redirect:/patios/lista";

@@ -48,7 +48,7 @@
 
     <!-- Modais de Moto -->
     <div th:each="moto : ${listaMotos}"
-         th:attr="id=${'infoModalMoto' + moto.idMoto}"
+         th:id="'infoModalMoto' + ${moto.idMoto}"
          style="display:none" class="card p-3 shadow-sm mt-3">
         <h5>Detalhes da Moto</h5>
         <p>
@@ -60,9 +60,20 @@
             <b>Pátio:</b> <span th:text="${moto.patio != null ? moto.patio.localizacao : 'Não definido'}"></span><br/>
             <b>Cliente:</b> <span th:text="${moto.cliente != null ? moto.cliente.nome : 'Sem cliente vinculado'}"></span>
         </p>
+
         <a th:href="@{/motos/cadastro/{id}(id=${moto.idMoto})}" class="btn btn-warning btn-sm">Editar</a>
-        <a th:href="@{/motos/deletar/{id}(id=${moto.idMoto})}" class="btn btn-danger btn-sm">Deletar</a>
-        <button class="btn btn-secondary btn-sm mt-2" th:attr="onclick=|hideModal('infoModalMoto' + ${moto.idMoto})|">Fechar</button>
+
+        <form th:action="@{/motos/deletar/{id}(id=${moto.idMoto})}"
+              method="post"
+              onsubmit="return confirm('Tem certeza que deseja excluir esta moto?')"
+              style="display:inline;">
+            <button type="submit" class="btn btn-danger btn-sm">Deletar</button>
+        </form>
+
+        <button class="btn btn-secondary btn-sm mt-2"
+                th:attr="onclick=|hideModal('infoModalMoto' + ${moto.idMoto})|">
+            Fechar
+        </button>
     </div>
 </div>
 

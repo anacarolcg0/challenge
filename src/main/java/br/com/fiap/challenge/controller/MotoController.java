@@ -55,20 +55,17 @@ public class MotoController {
             return "motoCadastro";
         }
 
-        // Setar o pátio
         if (patioId != null) {
             Patio p = patioService.readPatio(patioId);
             moto.setPatio(p);
         }
 
-        // Setar o cliente e sincronizar relacionamento bidirecional
         if (clienteId != null) {
             var c = clienteService.readCliente(clienteId);
-            c.setMoto(moto);       // Atualiza o lado dono da relação (FK na tabela Cliente)
-            moto.setCliente(c);    // Mantém o lado da Moto consistente
+            c.setMoto(moto);
+            moto.setCliente(c);
         }
 
-        // Criar ou atualizar a moto
         if (moto.getIdMoto() == null) {
             motoService.createMoto(moto);
         } else {
@@ -90,7 +87,7 @@ public class MotoController {
         return "motoCadastro";
     }
 
-    @GetMapping("/deletar/{id}")
+    @PostMapping("/deletar/{id}")
     public String deletarMoto(@PathVariable Long id) {
         motoService.deleteMoto(id);
         return "redirect:/motos/lista";

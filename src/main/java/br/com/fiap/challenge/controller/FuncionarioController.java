@@ -57,7 +57,7 @@ public class FuncionarioController {
         return "funcionarioCadastro";
     }
 
-    @GetMapping("/deletar/{id}")
+    @PostMapping("/deletar/{id}")
     public String deletarFuncionario(@PathVariable Long id) {
         funcionarioService.deleteFuncionario(id);
         return "redirect:/funcionarios/lista";

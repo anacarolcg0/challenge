@@ -72,7 +72,7 @@ public class ClienteController {
         return "clienteCadastro";
     }
 
-    @GetMapping("/deletar/{id}")
+    @PostMapping("/deletar/{id}")
     public String deletarCliente(@PathVariable Long id) {
         clienteService.deleteCliente(id);
         return "redirect:/clientes/lista";
