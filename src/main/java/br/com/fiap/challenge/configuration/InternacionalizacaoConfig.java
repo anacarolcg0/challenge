@@ -1,4 +1,4 @@
-package br.com.fiap.spring_mvc.configuration;
+package br.com.fiap.challenge.configuration;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +15,7 @@ import java.util.Locale;
 
 @Configuration
 public class InternacionalizacaoConfig implements WebMvcConfigurer {
+
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver slr = new SessionLocaleResolver();
@@ -25,7 +26,7 @@ public class InternacionalizacaoConfig implements WebMvcConfigurer {
     @Bean
     public LocaleChangeInterceptor localeChangeInterceptor() {
         LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
-        lci.setParamName("Long");
+        lci.setParamName("lang");
         return lci;
     }
 
@@ -37,8 +38,8 @@ public class InternacionalizacaoConfig implements WebMvcConfigurer {
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasename("18n/messages");
-        messageSource.setDefaultEncoding(StandardCharsets.ISO_8859_1.name());
+        messageSource.setBasename("i18n/messages");
+        messageSource.setDefaultEncoding(StandardCharsets.UTF_8.name());
         return messageSource;
     }
 }
