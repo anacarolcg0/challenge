@@ -2,8 +2,8 @@ package br.com.fiap.challenge.configuration;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -13,12 +13,13 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
-@Controller
+@Configuration
 public class InternacionalizacaoConfig implements WebMvcConfigurer {
+
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver slr = new SessionLocaleResolver();
-        slr.setDefaultLocale(Locale.of("pt", "BR"));
+        slr.setDefaultLocale(new Locale("pt", "BR")); // define PT-BR como padrão
         return slr;
     }
 
@@ -37,8 +38,8 @@ public class InternacionalizacaoConfig implements WebMvcConfigurer {
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasename("i18n/messages");
-        messageSource.setDefaultEncoding(StandardCharsets.ISO_8859_1.name());
+        messageSource.setBasename("messages");
+        messageSource.setDefaultEncoding(StandardCharsets.UTF_8.name());
         return messageSource;
     }
 }
