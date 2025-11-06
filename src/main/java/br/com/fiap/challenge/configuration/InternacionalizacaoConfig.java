@@ -19,7 +19,7 @@ public class InternacionalizacaoConfig implements WebMvcConfigurer {
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver slr = new SessionLocaleResolver();
-        slr.setDefaultLocale(new Locale("pt", "BR")); // define PT-BR como padrão
+        slr.setDefaultLocale(new Locale("pt", "BR"));
         return slr;
     }
 
@@ -38,7 +38,7 @@ public class InternacionalizacaoConfig implements WebMvcConfigurer {
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasename("messages");
+        messageSource.setBasename("i18n/resource bundle 'messages'/messages");
         messageSource.setDefaultEncoding(StandardCharsets.UTF_8.name());
         return messageSource;
     }
