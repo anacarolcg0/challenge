@@ -56,6 +56,19 @@ Otimizar o controle de serviços agendados, evitando conflitos de horário e gar
 - Clone o repositório
 - Navegue até a pasta do projeto
 - Execute o comando: ./gradlew bootRun
-- Acesse a aplicação em: http://localhost:8080
+- Acesse a aplicação em: 
+
+🔗 http://localhost:8080
+
+MAIS INFORMAÇÕES DA SEGURANÇA OAUTH ESTÃO NO ARQUIVO .TXT
+
+---
+
+## 🌐 Deploy na Nuvem (Render)
+
+- A aplicação está hospedada na nuvem
+- Acesse a aplicação em:
+
+🔗 https://challenge-y8di.onrender.com
 
 MAIS INFORMAÇÕES DA SEGURANÇA OAUTH ESTÃO NO ARQUIVO .TXT
